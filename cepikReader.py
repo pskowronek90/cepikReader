@@ -55,7 +55,7 @@ class CepikReader():
 
         self.moveReports()
 
-    
+    #Move reports to dedicated folder
     def moveReports(self):
         reportExtensions = (".xls", ".xlsx")
         
