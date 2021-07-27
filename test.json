@@ -1,0 +1,149 @@
+[{
+        "brand": "VOLKSWAGEN",
+        "amount": 9
+    },
+    {
+        "brand": "PEUGEOT",
+        "amount": 9
+    },
+    {
+        "brand": "BMW",
+        "amount": 8
+    },
+    {
+        "brand": "OPEL",
+        "amount": 8
+    },
+    {
+        "brand": "FORD",
+        "amount": 7
+    },
+    {
+        "brand": "MERCEDES-BENZ",
+        "amount": 5
+    },
+    {
+        "brand": "FIAT",
+        "amount": 4
+    },
+    {
+        "brand": "RENAULT",
+        "amount": 4
+    },
+    {
+        "brand": "SUZUKI",
+        "amount": 4
+    },
+    {
+        "brand": "HONDA",
+        "amount": 4
+    },
+    {
+        "brand": "SEAT",
+        "amount": 3
+    },
+    {
+        "brand": "CITROEN",
+        "amount": 3
+    },
+    {
+        "brand": "CIMC VEHICLES",
+        "amount": 2
+    },
+    {
+        "brand": "DACIA",
+        "amount": 2
+    },
+    {
+        "brand": "KIA",
+        "amount": 2
+    },
+    {
+        "brand": "SCHMITZ CARGOBULL",
+        "amount": 2
+    },
+    {
+        "brand": "AUDI",
+        "amount": 2
+    },
+    {
+        "brand": "NISSAN",
+        "amount": 2
+    },
+    {
+        "brand": "TOYOTA",
+        "amount": 2
+    },
+    {
+        "brand": "BARTHAU",
+        "amount": 1
+    },
+    {
+        "brand": "SCHMITZ CARGOBULL GOTHA",
+        "amount": 1
+    },
+    {
+        "brand": "DINKEL",
+        "amount": 1
+    },
+    {
+        "brand": "FLIEGL",
+        "amount": 1
+    },
+    {
+        "brand": "IVECO",
+        "amount": 1
+    },
+    {
+        "brand": "HYUNDAI",
+        "amount": 1
+    },
+    {
+        "brand": "INTER CARS",
+        "amount": 1
+    },
+    {
+        "brand": "MARTZ",
+        "amount": 1
+    },
+    {
+        "brand": "INFINITI",
+        "amount": 1
+    },
+    {
+        "brand": "SCANIA",
+        "amount": 1
+    },
+    {
+        "brand": "MAN",
+        "amount": 1
+    },
+    {
+        "brand": "SKODA",
+        "amount": 1
+    },
+    {
+        "brand": "ISUZU",
+        "amount": 1
+    },
+    {
+        "brand": "ALFA ROMEO",
+        "amount": 1
+    },
+    {
+        "brand": "MAZDA",
+        "amount": 1
+    },
+    {
+        "brand": "MINI",
+        "amount": 1
+    },
+    {
+        "brand": "VOLVO",
+        "amount": 1
+    },
+    {
+        "brand": "GSODAM",
+        "amount": 1
+    }
+]
