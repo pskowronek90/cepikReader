@@ -1,6 +1,6 @@
 ![alt text](logo.png)
 
-## My first Python project that helps me to lear the language :) ##
+## My first Python project that helps me to learn the language :) ##
 
 Simple Python script to process data from CEPIK API (Public list of registered vehicles)
 
