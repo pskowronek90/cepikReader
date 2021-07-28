@@ -1,8 +1,10 @@
+from matplotlib import pyplot as plt
 from datetime import datetime
 from json import load
 import json
 import os
 import shutil
+from numpy import invert
 import pandas as pd
 
 reportsPath = "./reports"
@@ -14,18 +16,35 @@ class CepikReader():
         self.json = json
 
 
-    #Read JSON content
+    #Read JSON content and presents as graph
     def readJson(self):
         jsonFile = open(self.json)
         jsonData = load(jsonFile)
+
+        #Convert JSON array to key value pairs
+        flattenData = {}
         
         for i in jsonData:
             if i['brand'] is None:
                 continue
             
-            print(i['brand'] + " - " + str(i['amount']))
+            flattenData[i['brand']] = i['amount']
 
-        jsonFile.close()
+        json.dumps(flattenData)
+
+        #Graph configuration
+        brands = list(flattenData.keys())
+        amounts = list(flattenData.values())
+        
+        fig, ax = plt.subplots(figsize=(16, 12)) #Width, height
+        ax.invert_yaxis()
+
+        for i, v in enumerate(amounts):
+            ax.text(v + 0.1, i + .50, str(v), color='black') 
+        
+        plt.title('Most popular cars registered')
+        plt.barh(brands, amounts, color='green')
+        plt.show()
 
     #Converts filtered JSON data to Excel
     def topBrandsReport(self):
@@ -69,7 +88,6 @@ class CepikReader():
     def removeTempFile(self):
         os.remove('top.json')
 
-#Testing
+# #Testing
 JSONReader = CepikReader('test.json')
-JSONReader.topBrandsReport()
-JSONReader.fullReport()
+JSONReader.readJson()
