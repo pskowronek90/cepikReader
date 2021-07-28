@@ -26,6 +26,9 @@ class CepikReader():
             choices=["Read JSON", "Generate TOP Report", "Generate Full Report"]
         )
 
+        if str(choice) == "logo.png":
+           gui.msgbox(f"File {self.json} is currently loaded")
+
         if str(choice) == "Read JSON":
             self.readJson()
         
