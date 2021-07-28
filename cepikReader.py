@@ -1,3 +1,4 @@
+import easygui as gui
 from matplotlib import pyplot as plt
 from datetime import datetime
 from json import load
@@ -14,6 +15,27 @@ class CepikReader():
     #Constructor
     def __init__(self, json):
         self.json = json
+
+
+    #Main GUI
+    def main(self):
+        choice = gui.buttonbox(
+            msg='Welcome to CEPIK Reader!', 
+            title='CEPIK Reader', 
+            image="logo.png", 
+            choices=["Read JSON", "Generate TOP Report", "Generate Full Report"]
+        )
+
+        if str(choice) == "Read JSON":
+            self.readJson()
+        
+        if str(choice) == "Generate TOP Report":
+            gui.msgbox("Preparing Top Brands Excel file...")
+            self.topBrandsReport()
+
+        if str(choice) == "Generate Full Report":
+            gui.msgbox("Preparing Full Excel file...")
+            self.fullReport()
 
 
     #Read JSON content and presents as graph
@@ -48,8 +70,6 @@ class CepikReader():
 
     #Converts filtered JSON data to Excel
     def topBrandsReport(self):
-        print("Preparing Top Brands Excel file...")
-        
         jsonFile = open(self.json)
         jsonData = load(jsonFile)
 
@@ -67,8 +87,6 @@ class CepikReader():
 
     #Converts entire JSON data to Excel
     def fullReport(self):
-        print("Preparing Full Excel file...")
-        
         jsonFile = pd.read_json(self.json)
         jsonFile.to_excel('full-' + timeStamp + '.xlsx')
 
@@ -89,5 +107,6 @@ class CepikReader():
         os.remove('top.json')
 
 # #Testing
-JSONReader = CepikReader('test.json')
-JSONReader.readJson()
+if __name__ == '__main__':
+    JSONReader = CepikReader('test.json')
+    JSONReader.main()
