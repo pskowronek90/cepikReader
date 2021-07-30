@@ -1,4 +1,6 @@
+from easygui.boxes import choice_box
 from cepikTransform import transformVehiclesData
+from cepikRegions import regionCode
 from calendar import monthrange
 import calendar
 import easygui as gui
@@ -37,6 +39,30 @@ class CepikReader():
                 gui.msgbox("Please generate JSON file")
 
         if str(choice) == "Generate & Read JSON":
+            region = gui.choicebox(
+                msg='Please select region', 
+                choices=[
+                        "DOLNOŚLĄSKIE",
+                        "KUJAWSKO-POMORSKIE",
+                        "LUBUSKIE",
+                        "ŁÓDZKIE",
+                        "LUBELSKIE",
+                        "MAŁOPOLSKIE",
+                        "MAZOWIECKIE",
+                        "OPOLSKIE",
+                        "PODLASKIE",
+                        "PODKARPACKIE",
+                        "POMORSKIE",
+                        "ŚWIĘTOKRZYSKIE",
+                        "ŚLĄSKIE",
+                        "WARMIŃSKO-MAZURSKIE",
+                        "WIELKOPOLSKIE",
+                        "ZACHODNIOPOMORSKIE",
+                    ]
+            )
+
+            #print(regionCode(region))
+            
             multibox = gui.multenterbox(
                 title='Generate JSON',
                 msg='Enter API request headers',
