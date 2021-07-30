@@ -1,4 +1,6 @@
 from cepikTransform import transformVehiclesData
+from calendar import monthrange
+import calendar
 import easygui as gui
 from matplotlib import pyplot as plt
 from datetime import datetime
@@ -23,16 +25,46 @@ class CepikReader():
         choice = gui.buttonbox(
             msg='Welcome to CEPIK Reader!', 
             title='CEPIK Reader', 
-            image="logo.png", 
-            choices=["Read JSON", "Generate TOP Report", "Generate Full Report"]
+            image="content/logo.png", 
+            choices=["Generate & Read JSON", "Generate TOP Report", "Generate Full Report"]
         )
 
-        if str(choice) == "logo.png":
-           gui.msgbox(f"File {self.json} is currently loaded")
 
-        if str(choice) == "Read JSON":
-            self.readJson()
-        
+        if str(choice) == "logo.png":
+            if os.path.isfile('data.json'):
+                gui.msgbox(f"File {self.json} is currently loaded")
+            else:
+                gui.msgbox("Please generate JSON file")
+
+        if str(choice) == "Generate & Read JSON":
+            multibox = gui.multenterbox(
+                title='Generate JSON',
+                msg='Enter API request headers',
+                fields=[
+                    'Year', 
+                    'Start month (from 01 - 12)', 
+                    'End month (from 01 - 12)'
+                ]
+            )
+
+            if '' not in multibox:
+                lastDayOfMonth = monthrange(int(multibox[0]), int(multibox[2]))[1]
+                year = multibox[0]
+                startMonth = multibox[1]
+                endMonth = multibox[2]
+                
+                gui.msgbox("Please wait until report is generated...")
+                transformVehiclesData(year, startMonth, endMonth, lastDayOfMonth)
+
+                if os.path.isfile('data.json'):
+                    self.readJson(year, startMonth, endMonth) 
+
+            else:
+                gui.msgbox(
+                    msg="Please fill all fields",
+                    image="content/error.png"
+                )
+
         if str(choice) == "Generate TOP Report":
             gui.msgbox("Preparing Top Brands Excel file...")
             self.topBrandsReport()
@@ -42,9 +74,7 @@ class CepikReader():
             self.fullReport()
 
     #Read JSON content and presents as graph
-    def readJson(self):
-        transformVehiclesData()
-        
+    def readJson(self, year, startMonth, endMonth):
         jsonFile = open(self.json)
         jsonData = load(jsonFile)
 
@@ -69,7 +99,7 @@ class CepikReader():
         for i, v in enumerate(amounts):
             ax.text(v + 0.1, i + .50, str(v), color='black') 
         
-        plt.title('Most popular cars registered')
+        plt.title(f"Most popular cars registered between {calendar.month_name[int(startMonth)]} - {calendar.month_name[int(endMonth)]} {year}")
         plt.barh(brands, amounts, color='green')
         plt.show()
 
@@ -113,5 +143,5 @@ class CepikReader():
 
 # #Testing
 if __name__ == '__main__':
-    JSONReader = CepikReader('test.json')
+    JSONReader = CepikReader('data.json')
     JSONReader.main()
