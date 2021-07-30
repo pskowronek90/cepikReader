@@ -4,6 +4,6 @@
 
 Simple Python script to process data from CEPIK API (Public list of registered vehicles)
 
-* DWL script modifies the data from API into more readable form
-    * In order to use it, please paste it to http://dwlang.fun (Dataweave Playground)
-* Python script generates the report from predefined JSON file
+---
+1. Run *cepikReader.py* Python script generates the report from predefined JSON file
+2. File *cepikTransform.py* is a module that helps with transformation of the JSON response from CEPIK

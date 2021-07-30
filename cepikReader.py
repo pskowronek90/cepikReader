@@ -1,3 +1,4 @@
+from cepikTransform import transformVehiclesData
 import easygui as gui
 from matplotlib import pyplot as plt
 from datetime import datetime
@@ -40,9 +41,10 @@ class CepikReader():
             gui.msgbox("Preparing Full Excel file...")
             self.fullReport()
 
-
     #Read JSON content and presents as graph
     def readJson(self):
+        transformVehiclesData()
+        
         jsonFile = open(self.json)
         jsonData = load(jsonFile)
 
