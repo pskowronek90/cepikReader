@@ -1,4 +1,4 @@
-![alt text](logo.png)
+![alt text](content/logo.png)
 
 ## My first Python project that helps me to learn the language :) ##
 
