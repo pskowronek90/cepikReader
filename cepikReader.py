@@ -1,4 +1,3 @@
-from easygui.boxes import choice_box
 from cepikTransform import transformVehiclesData
 from cepikRegions import regionCode
 from calendar import monthrange
@@ -40,7 +39,7 @@ class CepikReader():
 
         if str(choice) == "Generate & Read JSON":
             region = gui.choicebox(
-                msg='Please select region', 
+                msg='Please select region:', 
                 choices=[
                         "DOLNOŚLĄSKIE",
                         "KUJAWSKO-POMORSKIE",
@@ -60,8 +59,6 @@ class CepikReader():
                         "ZACHODNIOPOMORSKIE",
                     ]
             )
-
-            #print(regionCode(region))
             
             multibox = gui.multenterbox(
                 title='Generate JSON',
@@ -74,16 +71,17 @@ class CepikReader():
             )
 
             if '' not in multibox:
+                selectedRegion = regionCode(region)
                 lastDayOfMonth = monthrange(int(multibox[0]), int(multibox[2]))[1]
                 year = multibox[0]
                 startMonth = multibox[1]
                 endMonth = multibox[2]
                 
                 gui.msgbox("Please wait until report is generated...")
-                transformVehiclesData(year, startMonth, endMonth, lastDayOfMonth)
+                transformVehiclesData(selectedRegion, year, startMonth, endMonth, lastDayOfMonth)
 
                 if os.path.isfile('data.json'):
-                    self.readJson(year, startMonth, endMonth) 
+                    self.readJson(region, year, startMonth, endMonth) 
 
             else:
                 gui.msgbox(
@@ -100,7 +98,7 @@ class CepikReader():
             self.fullReport()
 
     #Read JSON content and presents as graph
-    def readJson(self, year, startMonth, endMonth):
+    def readJson(self, region, year, startMonth, endMonth):
         jsonFile = open(self.json)
         jsonData = load(jsonFile)
 
@@ -123,9 +121,13 @@ class CepikReader():
         ax.invert_yaxis()
 
         for i, v in enumerate(amounts):
-            ax.text(v + 0.1, i + .50, str(v), color='black') 
+            ax.text(v + 0.1, i + .50, str(v), color='black')
+
+        regionName = str.capitalize(str.lower(region))
+        startMonthName = calendar.month_name[int(startMonth)]     
+        endMonthName = calendar.month_name[int(endMonth)] 
         
-        plt.title(f"Most popular cars registered between {calendar.month_name[int(startMonth)]} - {calendar.month_name[int(endMonth)]} {year}")
+        plt.title(f"Most popular car brands registered in {regionName} between {startMonthName} - {endMonthName} {year}")
         plt.barh(brands, amounts, color='green')
         plt.show()
 

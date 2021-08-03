@@ -1,5 +1,4 @@
 def regionCode(region):
-    
     regions = {
         "DOLNOŚLĄSKIE": "02",
         "KUJAWSKO-POMORSKIE": "04",
@@ -19,6 +18,4 @@ def regionCode(region):
         "ZACHODNIOPOMORSKIE": "32"
     }
 
-    print(regions[region])
-
-regionCode("POMORSKIE")
+    return regions[region]
