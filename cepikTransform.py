@@ -4,8 +4,8 @@ from collections import Counter
 
 
 #Transform the JSON response about vehicles
-def transformVehiclesData(year, startMonth, endMonth, lastDatofMonth):
-    url = f"https://api.cepik.gov.pl//pojazdy?wojewodztwo=30&data-od={year}{startMonth}01&data-do={year}{endMonth}{lastDatofMonth}"
+def transformVehiclesData(regionCode, year, startMonth, endMonth, lastDatofMonth):
+    url = f"https://api.cepik.gov.pl//pojazdy?wojewodztwo={regionCode}&data-od={year}{startMonth}01&data-do={year}{endMonth}{lastDatofMonth}"
 
     with urllib.request.urlopen(url) as url:
         data = json.loads(url.read().decode())
